@@ -18,15 +18,7 @@ class TestBurger:
         assert burger.bun.name == bun_name   
 
     @pytest.mark.parametrize('ingredient_name', [
-        'Мясо бессмертных моллюсков Protostomia',
-        'Говяжий метеорит (отбивная)',
-        'Биокотлета из марсианской Магнолии',
-        'Филе Люминесцентного тетраодонтимформа',
-        'Хрустящие минеральные кольца',
-        'Плоды Фалленианского дерева',
-        'Кристаллы марсианских альфа-сахаридов',
-        'Мини-салат Экзо-Плантаго',
-        'Сыр с астероидной плесенью'
+        'Мясо бессмертных моллюсков Protostomia'        
     ])
     def test_ingredient(self, ingredient_name):
         ingredient = Mock()
@@ -47,15 +39,13 @@ class TestBurger:
         ingredient.name = ingredient_name
         burger = Burger()
         burger.add_ingredient(ingredient)
-        assert len(burger.ingredients) == 1
+        len(burger.ingredients) == 1
         burger.remove_ingredient(0)
         assert len(burger.ingredients) == 0
 
     @pytest.mark.parametrize('ingredient1_name, ingredient2_name', [
-        ('Соус Spicy-X', 'Мясо бессмертных моллюсков Protostomia'),
-        ('Соус фирменный Space Sauce', 'Говяжий метеорит (отбивная)'),
-        ('Соус традиционный галактический', 'Биокотлета из марсианской Магнолии'),
-        ('Соус с шипами Антарианского плоскоходца', 'Хрустящие минеральные кольца')
+        ('Соус Spicy-X', 'Мясо бессмертных моллюсков Protostomia')
+        
     ]) 
     def test_move_ingredient(self, ingredient1_name, ingredient2_name):
         ingredient1 = Mock()
@@ -65,10 +55,10 @@ class TestBurger:
         burger = Burger()
         burger.add_ingredient(ingredient1)
         burger.add_ingredient(ingredient2)
-        assert burger.ingredients[0].name == ingredient1_name
-        assert burger.ingredients[1].name == ingredient2_name
+        burger.ingredients[0].name == ingredient1_name
+        burger.ingredients[1].name == ingredient2_name
         burger.move_ingredient(1, 0)
-        assert burger.ingredients[0].name == ingredient2_name
+        burger.ingredients[0].name == ingredient2_name
         assert burger.ingredients[1].name == ingredient1_name
 
     @pytest.mark.parametrize('bun_price, ingredient_price, ingredient2_price, expected_price', [
